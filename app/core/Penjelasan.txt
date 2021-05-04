@@ -1,0 +1,3 @@
+Controller menjadi yang utama dalam mvc. Controller akan memanggil view dan model sesuai dengan permintaan. Contoh misalkan kita mengakses controller Mahasiswa method index (http://locakhost/phpmvc/mahasiswa/index).
+Method index melakukan 2 hal, yaitu meminta data pada model (Mahasiswa_model) dan memanggil view (views/mahasiswa/index.php).
+Mahasiswa_model akan memberikan data kepada controller Mahasiswa method index, lalu method index memanggil view (views/mahasiswa/index.php) sekaligus mengirimkan data tadi yang akan dipakai dalam view tersebut. Kemudian view itu akan menjadi tampilan dari index.php di folder public.
