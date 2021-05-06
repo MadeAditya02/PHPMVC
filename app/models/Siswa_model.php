@@ -79,6 +79,25 @@ class Siswa_model
 
         return $this->db->rowAffected();
     }
+
+    public function cariDataSiswa()
+    {
+        if (isset($_GET['keyword'])) {
+            $keyword = $_GET['keyword'];
+        }
+
+        $keyword = $_POST['keyword'];
+
+        $query = "SELECT * FROM databaselatihan WHERE 
+        Nama LIKE :keyword OR 
+        NIS LIKE :keyword OR
+        Jurusan LIKE :keyword OR
+        Kelas LIKE :keyword";
+
+        $this->db->query($query);
+        $this->db->bind('keyword', "%$keyword%");
+        return $this->db->resultSet();
+    }
 }
 
 

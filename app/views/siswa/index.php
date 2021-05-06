@@ -9,7 +9,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 
   <!-- Bootstrap CSS Offline -->
-  <link rel="stylesheet" href="http://localhost/phpmvc/public/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://localhost/phpmvc/public/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 
   <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
@@ -55,18 +55,26 @@
   <div class="row">
     <div class="col-8">
       <h3>Daftar Siswa</h3>
-
       <br>
-
       <button type="button" class="btn btn-primary mb-2 tombolTambahData" data-bs-toggle="modal" data-bs-target="#exampleModal">
         <i class="bi bi-plus-circle"></i> Tambah Data
       </button>
+    </div>
+  </div>
 
-      <div class="input-group mb-2 mt-3">
-        <input type="text" class="form-control" placeholder="Masukkan pencarian..." aria-label="Recipient's username" aria-describedby="basic-addon2" name="keyword" id="keyword">
-        <span class="input-group-text" id="basic-addon2"><i class="bi bi-search"></i></span>
-      </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <form action="<?= BASEURL; ?>siswa/cari" method="post">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Masukkan pencarian..." aria-label="Recipient's username" aria-describedby="button-addon2" name="keyword" id="keyword">
+          <button class="btn btn-outline-secondary" type="submit" id="tombolCari"><i class="bi bi-search"></i></button>
+        </div>
+      </form>
+    </div>
+  </div>
 
+  <div class="row">
+    <div class="col-lg-9">
       <table class="table table-striped table-hover">
         <thead>
           <tr>
@@ -87,18 +95,16 @@
               <td><?= $siswa['Nama']; ?></td>
               <td><?= $siswa['NIS']; ?></td>
               <td><?= $siswa['Jurusan']; ?></td>
-              <td width="90"><?= $siswa['Kelas']; ?></td>
+              <td><?= $siswa['Kelas']; ?></td>
               <td>
                 <a href="<?= BASEURL; ?>siswa/hapus/<?= $siswa['Id']; ?>">
                   <button type="button" class="btn btn-danger" onclick="return confirm('Anda yakin ingin menghapus data siswa?');"><i class="bi bi-trash"></i></button>
                 </a>
               </td>
               <td>
-                <a href="#">
-                  <button type="button" class="btn btn-warning tampilModalUbah" data-bs-toggle="modal" data-bs-target="#exampleModal" data-id="<?= $siswa['Id']; ?>" data-nama="<?= $siswa['Nama']; ?>" data-nis="<?= $siswa['NIS']; ?>" data-jurusan="<?= $siswa['Jurusan']; ?>" data-kelas="<?= $siswa['Kelas']; ?>">
-                    <i class="bi bi-pencil-square"></i>
-                  </button>
-                </a>
+                <button type="button" class="btn btn-warning tampilModalUbah" data-bs-toggle="modal" data-bs-target="#exampleModal" data-id="<?= $siswa['Id']; ?>" data-nama="<?= $siswa['Nama']; ?>" data-nis="<?= $siswa['NIS']; ?>" data-jurusan="<?= $siswa['Jurusan']; ?>" data-kelas="<?= $siswa['Kelas']; ?>">
+                  <i class="bi bi-pencil-square"></i>
+                </button>
               </td>
             </tr>
             <?php $i++; ?>
@@ -173,7 +179,6 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-<script src="<?= BASEURL; ?>js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 <script src="<?= BASEURL; ?>js/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 <script>
@@ -213,5 +218,26 @@
 
   });
 </script>
+
+<!--
+Script ini adalah script untuk live search, tapi saya gagal membuatnya. Jika ada yang mau kalian bisa membantu memperbaikinya
+<script>
+  const keyword = document.getElementById('keyword');
+  const tombolCari = document.getElementById('tombolCari');
+
+  keyword.addEventListener('keyup', function() {
+    const xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        console.log(xhr.responseText);
+      }
+    }
+
+    xhr.open('GET', 'http://localhost/phpmvc/public/siswa/cari?keyword=' + keyword.value, true);
+    xhr.send();
+  });
+</script>
+-->
 </body>
 </html>

@@ -1,10 +1,10 @@
 const select = document.querySelector('select');
 
 select.addEventListener('click', function() {
-  const opt1 = document.getElementById('optjurusan');
-  const opt2 = document.getElementById('optkelas');
-  opt1.setAttribute('disabled', 'disabled');
-  opt2.setAttribute('disabled', 'disabled');
+	const opt1 = document.getElementById('optjurusan');
+	const opt2 = document.getElementById('optkelas');
+	opt1.setAttribute('disabled', 'disabled');
+	opt2.setAttribute('disabled', 'disabled');
 });
 
 const xtkj = document.getElementsByClassName('xtkj');
@@ -20,5 +20,5 @@ const dkv = document.getElementById('tkj');
 const an = document.getElementById('an');
 
 tkj.addEventListener('click', function() {
-  console.log('Hello World');
+	console.log('Hello World');
 });
